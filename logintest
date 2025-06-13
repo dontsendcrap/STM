@@ -1,0 +1,16 @@
+const { Builder, By } = require('selenium-webdriver'); 
+ 
+(async function loginTest() { 
+    let driver = await new Builder().forBrowser('chrome').build(); 
+    try { 
+        await driver.get('https://example.com/login'); 
+ 
+        await driver.findElement(By.name('username')).sendKeys('yourUsername'); 
+        await driver.findElement(By.name('password')).sendKeys('yourPassword'); 
+ 
+        await driver.findElement(By.css('button[type="submit"]')).click(); 
+        await driver.sleep(2000); // wait for response 
+    } finally { 
+        await driver.quit(); 
+    } 
+})();
