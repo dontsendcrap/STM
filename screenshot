@@ -1,0 +1,14 @@
+const { Builder } = require('selenium-webdriver'); 
+const fs = require('fs'); 
+ 
+(async function takeScreenshot() { 
+    let driver = await new Builder().forBrowser('chrome').build(); 
+    try { 
+        await driver.get('https://example.com'); 
+        let screenshot = await driver.takeScreenshot(); 
+        fs.writeFileSync('screenshot.png', screenshot, 'base64'); 
+        console.log('Screenshot saved.'); 
+    } finally { 
+        await driver.quit(); 
+    } 
+})();
