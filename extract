@@ -1,0 +1,13 @@
+const { Builder, By } = require('selenium-webdriver'); 
+ 
+(async function extractText() { 
+    let driver = await new Builder().forBrowser('chrome').build(); 
+    try { 
+        await driver.get('https://example.com'); 
+        let element = await driver.findElement(By.tagName('h1')); 
+        let text = await element.getText(); 
+        console.log('Extracted Text:', text); 
+    } finally { 
+        await driver.quit(); 
+    } 
+})(); 
